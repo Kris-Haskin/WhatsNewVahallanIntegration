@@ -32,9 +32,11 @@
     <Content Include="public\client.js" />
     <Content Include="functions\fetchNotion.js" />
     <Content Include="public\index.html" />
+    <Content Include="public\_headers" />
     <Content Include="server.js" />
     <Content Include="package.json" />
     <Content Include="README.md" />
+    <Content Include="_redirects" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="functions\" />
