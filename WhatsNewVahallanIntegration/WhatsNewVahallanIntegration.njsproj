@@ -28,7 +28,7 @@
     <DebugSymbols>true</DebugSymbols>
   </PropertyGroup>
   <ItemGroup>
-    <Content Include="Netlify.toml" />
+    <Content Include="netlify.toml" />
     <Content Include="public\client.js" />
     <Content Include="functions\fetchNotion.js" />
     <Content Include="public\index.html" />
