@@ -1,0 +1,7 @@
+[build]
+	functions = "functions"
+
+	[functions]
+  directory = "functions"
+
+
