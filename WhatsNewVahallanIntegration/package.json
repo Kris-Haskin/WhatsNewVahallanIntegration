@@ -1,0 +1,16 @@
+{
+  "name": "whats-new-vahallan-integration",
+  "version": "0.0.0",
+  "description": "WhatsNewVahallanIntegration",
+  "main": "server.js",
+  "author": {
+    "name": ""
+  },
+  "scripts": {
+    "start": "node server.js"
+  },
+  "devDependencies": {
+    "eslint": "^8.57.0"
+  },
+  "eslintConfig": {}
+}
