@@ -100,7 +100,7 @@ async function fetchWhatsNewList() {
 function processWhatsNewList(whatsNewList) {
     return whatsNewList.map((entry) => {
         const nameData = entry.properties.Name.title[0].text.content;
-        const textData = entry.properties.Text.rich_text[0]?.text.content || '';
+        const textData = entry.properties.Text.rich_text[0].text.content;
         let photoUrl = null;
 
         if (entry.properties.Photo && entry.properties.Photo.files && entry.properties.Photo.files.length > 0) {

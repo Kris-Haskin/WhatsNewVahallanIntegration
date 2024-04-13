@@ -1,6 +1,7 @@
 
 
 const { Client } = require('@notionhq/client');
+const databaseId = "9d3af30c-39aa-443e-b54d-b591fe0b64d0"
 
 const pageId = "4f325dd737604751b196aa75b2ece758";
 const apiKey = "secret_AqQ03Sygyjhp2etf45Hvsisqe4lT0oZ6XgtF7P8TNEU";
@@ -32,7 +33,7 @@ exports.handler = async function (event, context) {
 
 async function fetchWhatsNewList() {
     const response = await notion.databases.query({
-        database_id: pageId,
+        database_id: databaseId,
     });
     return processWhatsNewList(response.results);
 }
