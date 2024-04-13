@@ -40,8 +40,23 @@ async function fetchWhatsNewList() {
 
 function processWhatsNewList(whatsNewList) {
     const processedList = whatsNewList.map((entry) => {
-        const nameData = entry.properties.Name.title[0].text.content;
-        const textData = entry.properties.Text.rich_text[0].text.content;
+        let nameData = null;
+        let textData = null;
+
+        if (entry.properties.Name && entry.properties.Name.title.length > 0) {
+            const nameContent = entry.properties.Name.title[0].text.content;
+            if (nameContent.trim() !== '') {
+                nameData = nameContent;
+            }
+        }
+
+        if (entry.properties.Text && entry.properties.Text.rich_text.length > 0) {
+            const textContent = entry.properties.Text.rich_text[0].text.content;
+            if (textContent.trim() !== '') {
+                textData = textContent;
+            }
+        }
+
         let photoUrl = null;
 
         if (entry.properties.Photo && entry.properties.Photo.files && entry.properties.Photo.files.length > 0) {
@@ -49,14 +64,15 @@ function processWhatsNewList(whatsNewList) {
         }
 
         return {
-            name: nameData,
-            text: textData,
+            name: nameData || '',
+            text: textData || '',
             photo: photoUrl,
         };
-    });
+    }).filter(item => !(item.name === '' && item.text === '' && item.photo === null));
 
     return processedList;
 }
+
 
 function generateHTML(data) {
     const slidesHTML = data.map(item => {
