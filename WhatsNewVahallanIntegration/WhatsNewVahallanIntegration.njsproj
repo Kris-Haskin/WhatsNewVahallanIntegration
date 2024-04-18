@@ -28,10 +28,13 @@
     <DebugSymbols>true</DebugSymbols>
   </PropertyGroup>
   <ItemGroup>
+    <Content Include="functions\jpeg-featured-image.jpg" />
     <Content Include="netlify.toml" />
+    <Content Include="public\VahallanLogo.jpg" />
     <Content Include="public\client.js" />
     <Content Include="functions\fetchNotion.js" />
     <Content Include="public\index.html" />
+    <Content Include="public\vahallanlogo.png" />
     <Content Include="_headers" />
     <Content Include="server.js" />
     <Content Include="package.json" />
@@ -40,6 +43,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="functions\" />
+    <Folder Include="images\" />
     <Folder Include="public\" />
   </ItemGroup>
   <Import Project="$(VSToolsPath)\Node.js Tools\Microsoft.NodejsToolsV2.targets" />

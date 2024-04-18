@@ -76,11 +76,13 @@ function processWhatsNewList(whatsNewList) {
 
 function generateHTML(data) {
     const slidesHTML = data.map(item => {
+        ///
+///
         return `
             <div class="slide">
                 <h2>${item.name}</h2>
-                <p>${item.text}</p>
                 ${item.photo ? `<img src="${item.photo}" alt="${item.name}">` : ''}
+                <p>${item.text}</p>
             </div>
         `;
     });
@@ -93,7 +95,7 @@ function generateHTML(data) {
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
             <title>Notion Page Display</title>
             <style>
-    /* Add your CSS styles for the slideshow here */
+    /* CSS styles for the slideshow here */
         body {
             font-family: Arial, sans-serif;
             background-color: #333; /* Dark gray background */
@@ -102,42 +104,87 @@ function generateHTML(data) {
             padding: 0; /* Remove default padding */
         }
 
-        .slide {
-            display: none; /* Hide all slides initially */
-            margin: 0 auto; /* Center the slides horizontally */
-            padding: 15px;
-            max-width: 800px; /* Set maximum width for slides */
-            background-color: #222; /* Darker gray background for each slide */
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Add shadow effect */
-        }
-            .slide:first-child {
-            display: block; /* Display the first slide initially */
-        }
         h2 {
             font-size: 1.5em; /* 150% of the default font size */
             margin-bottom: 10px;
+                text-align: center; /* Center-align text */
+
         }
 
         p {
             font-size: 1.2em; /* 120% of the default font size */
             margin-bottom: 15px;
+                text-align: center; /* Center-align text */
+
+        }
+
+        #slide-container {
+            position: fixed;
+                z-index: 9999; /* Set a high z-index value */
+
+            top: 8%;
+            left: 10%;
+            right: 10%;
+            bottom: 3%;
+            background-color: #222; /* Darker gray background */
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Add shadow effect */
+            overflow: hidden; /* Hide overflowing content */
+            display: flex;
+            align-items: center; /* Center vertically */
+            justify-content: center; /* Center horizontally */
         }
 
         .slide img {
-            display: block; /* Ensure images are displayed as block elements */
-            max-width: 100%; /* Ensure images don't exceed slide width */
+            display: block; /* Ensure the image is displayed as a block element */
+            margin: auto; /* Center the image horizontally */
+            max-width: 90%; /* Set width to 100% */
+            max-height: calc(100% - 100px); /* Set max-height to 100% minus the space occupied by the text */
+            object-fit: contain; /* Cover the entire slide with the image */
             border-radius: 5px; /* Add rounded corners to images */
+        }
+
+        .slide {
+            width: 100%; /* Set width to 100% */
+            height: 100%; /* Set height to 100% */
+            overflow: hidden; /* Hide overflowing content */
+            background-color: #222; /* Darker gray background for each slide */
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Add shadow effect */
+            display: flex; /* Use flexbox layout */
+            flex-direction: column; /* Arrange child elements vertically */
+            justify-content: center; /* Center content vertically */
+            align-items: center; /* Center content horizontally */
+
+        }
+            #logo {
+    position: fixed;
+    top: 5px; /* Adjust the top position as needed */
+            margin-bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%); /* Center the logo horizontally */
+    z-index: 1; /* Ensure the logo appears above the slide container */
+
+
         }
             </style>
         </head>
+ 
         <body>
-        <h1>Vahallan</h1>
+
+        <div id="logo">
+           <img src="/vahallanlogo.png" alt="Vahallan Logo">
+        </div>
            <div id="slide-container">${slidesHTML.join('')}</div>
             <script>
                 // JavaScript code for controlling the slideshow
                 const slides = document.querySelectorAll('.slide');
                 let currentIndex = 0;
+
+                // Hide all slides except the first one
+                for (let i = 1; i < slides.length; i++) {
+                    slides[i].style.display = 'none';
+                }
 
                 const displayNextSlide = () => {
                     slides[currentIndex].style.display = 'none'; // Hide current slide
@@ -145,13 +192,13 @@ function generateHTML(data) {
                     slides[currentIndex].style.display = 'block'; // Show next slide
                 };
 
-                displayNextSlide(); // Display the first slide
-
+            setTimeout(() => {
+                displayNextSlide(); // Display the first slide after a delay
                 setInterval(displayNextSlide, 3000); // Switch to the next slide every 3 seconds
+            }, 3000); // Delay for 3 seconds before starting the slideshow
 
-
-
-            </script>        </body>
+        </script>
+        </body>
         </html>
     `;
 }
