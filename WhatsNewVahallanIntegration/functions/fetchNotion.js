@@ -1,5 +1,4 @@
 
-
 const { Client } = require('@notionhq/client');
 const databaseId = "9d3af30c-39aa-443e-b54d-b591fe0b64d0"
 

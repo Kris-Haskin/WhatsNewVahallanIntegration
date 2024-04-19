@@ -28,7 +28,6 @@
     <DebugSymbols>true</DebugSymbols>
   </PropertyGroup>
   <ItemGroup>
-    <Content Include="functions\jpeg-featured-image.jpg" />
     <Content Include="netlify.toml" />
     <Content Include="public\VahallanLogo.jpg" />
     <Content Include="public\client.js" />
