@@ -1,10 +1,10 @@
-const { Client } = require('@notionhq/client');
+﻿const { Client } = require('@notionhq/client');
 
 const databaseId = "9d3af30c-39aa-443e-b54d-b591fe0b64d0";
 const pageId = "4f325dd737604751b196aa75b2ece758";
 const apiKey = "secret_AqQ03Sygyjhp2etf45Hvsisqe4lT0oZ6XgtF7P8TNEU";
 const notion = new Client({ auth: apiKey });
-exports.handler = async function (event, context) {
+exports.handler = async function(event, context) {
     console.log('fetchNotion.js function is running!');
 
     try {
