@@ -89,21 +89,20 @@ function generateHTML(data) {
             <title>Notion Page Display</title>
             <style>
     /* CSS styles for the slideshow here */
-        * {
-    box-sizing: border-box;
-}
         body {
             font-family: Arial, sans-serif;
             background-color: #333; /* Dark gray background */
             color: #ffffff; /* White text color */
             margin: 0; /* Remove default margin */
             padding: 0; /* Remove default padding */
-                            text-align: center; /* Center-align text */
-                            display: flex;
-
-
         }
-
+        #logo-container {
+            position: fixed;
+            top: 5%;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 1; /* Ensure the logo appears above the slide container */
+        }
         h2 {
             font-size: 1.5em; /* 150% of the default font size */
             margin-bottom: 10px;
@@ -118,18 +117,22 @@ function generateHTML(data) {
 
         }
 
-#slide-container {
-    display: flex;
-    position: fixed;
-    top: 8%; /* Adjust top position as needed */
-    height: 90%; /* Set height to 60% of the body height */
-    z-index: 0;
-        left: 0;
-    right: 0;
-    margin-left: 15%; /* Center the container horizontally */
-    margin-right: 15%; /* Center the container horizontally */
-}
+        #slide-container {
+            position: fixed;
+                z-index: 9999; /* Set a high z-index value */
 
+            top: 8%;
+            left: 10%;
+            right: 10%;
+            bottom: 3%;
+            background-color: #222; /* Darker gray background */
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Add shadow effect */
+            overflow: hidden; /* Hide overflowing content */
+            display: flex;
+            align-items: center; /* Center vertically */
+            justify-content: center; /* Center horizontally */
+        }
 
         .slide img {
             display: block; /* Ensure the image is displayed as a block element */
@@ -153,23 +156,17 @@ function generateHTML(data) {
             align-items: center; /* Center content horizontally */
 
         }
-
-
-            #logo {
+        #logo {
             width: 200px; /* Adjust width as needed */
-              display: block;
-    margin: 0 auto; /* Center the logo horizontally */
-
-
         }
             </style>
         </head>
  
         <body>
 
-        
-           <img src="/vahallanlogo.png" alt="Vahallan Logo" id ="logo" >
-        
+        <div id="logo">
+           <img src="/vahallanlogo.png" alt="Vahallan Logo">
+        </div>
            <div id="slide-container">${slidesHTML.join('')}
             <script>
                 // JavaScript code for controlling the slideshow
