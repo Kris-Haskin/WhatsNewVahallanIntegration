@@ -37,6 +37,8 @@ function processWhatsNewList(whatsNewList) {
     const processedList = whatsNewList.map((entry) => {
         let nameData = null;
         let textData = null;
+        let photoUrl = null;
+
 
         if (entry.properties.Name && entry.properties.Name.title.length > 0) {
             const nameContent = entry.properties.Name.title[0].text.content;
@@ -52,10 +54,41 @@ function processWhatsNewList(whatsNewList) {
             }
         }
 
-        let photoUrl = null;
+
+        //if (entry.properties.Photo && entry.properties.Photo.files && entry.properties.Photo.files.length > 0) {
+        //    const file = entry.properties.Photo.files[0];
+        //    if (file && file.file && file.file.url) {
+        //        photoUrl = file.file.url;
+        //    }
+        //    else if (entry.properties.Photo && entry.properties.Photo.type === 'external' && entry.properties.Photo.external.url) {
+        //        // If the photo is an external link, use the URL from the link
+        //        photoUrl = entry.properties.Photo.external.url;
+        //    }
+        //}
+
+        //if (entry.properties.Photo) {
+        //    if (entry.properties.Photo.type === 'external' && entry.properties.Photo.external.url) {
+        //        // If the photo is an external link, use the URL from the external object
+        //        photoUrl = entry.properties.Photo.external.url;
+        //    } else if (entry.properties.Photo.files && entry.properties.Photo.files.length > 0) {
+        //        // If the photo is an uploaded file, use the URL from the file object
+        //        const file = entry.properties.Photo.files[0];
+        //        if (file && file.file && file.file.url) {
+        //            photoUrl = file.file.url;
+        //        }
+        //    }
+        //}
 
         if (entry.properties.Photo && entry.properties.Photo.files && entry.properties.Photo.files.length > 0) {
-            photoUrl = entry.properties.Photo.files[0].file.url;
+            const file = entry.properties.Photo.files[0];
+
+            if (file && file.type === 'external' && file.external && file.external.url) {
+                // If it's an embedded link, use the external URL directly
+                photoUrl = file.external.url;
+            } else if (file && file.file && file.file.url) {
+                // If it's an image file, use the file URL
+                photoUrl = file.file.url;
+            }
         }
 
         return {
@@ -128,6 +161,7 @@ function generateHTML(data) {
     right: 0;
     margin-left: 15%; /* Center the container horizontally */
     margin-right: 15%; /* Center the container horizontally */
+   
 }
 
 
@@ -166,7 +200,7 @@ function generateHTML(data) {
         </head>
  
         <body>
-
+        <p>p</p>
         
            <img src="/vahallanlogo.png" alt="Vahallan Logo" id ="logo" >
         
