@@ -102,8 +102,6 @@ function processWhatsNewList(whatsNewList) {
 }
 function generateHTML(data) {
     const slidesHTML = data.map(item => {
-        ///
-        ///
         return `
             <div class="slide">
                 <h2>${item.name}</h2>
@@ -200,7 +198,6 @@ function generateHTML(data) {
         </head>
  
         <body>
-        <p>p</p>
         
            <img src="/vahallanlogo.png" alt="Vahallan Logo" id ="logo" >
         
